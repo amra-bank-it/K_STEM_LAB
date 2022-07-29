@@ -1,6 +1,15 @@
-﻿namespace K_STEM_LAB.Models.Response
+﻿namespace K_STEM_LAB.Models.Response.respCheck
+
 {
-    public class Item
+  public class Root
+  {
+    public int total { get; set; }
+    public int count { get; set; }
+    public int page { get; set; }
+    public List<Item> items { get; set; }
+  }
+
+  public class Item
     {
         public int id { get; set; }
         public List<int> branch_ids { get; set; }
@@ -42,13 +51,6 @@
         public string custom_rejection_reason { get; set; }
         public string custom_prichinaotkazadop { get; set; }
 
-        public class Root
-        {
-            public int total { get; set; }
-            public int count { get; set; }
-            public int page { get; set; }
-            public List<Item> items { get; set; }
-        }
     }
 }
 

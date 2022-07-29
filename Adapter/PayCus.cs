@@ -3,12 +3,14 @@ using NLog;
 using RestSharp;
 using TokenAuth = K_STEM_LAB.Models.Response.Root;
 using Pay = K_STEM_LAB.Models.Request.reqPay;
+using RespPayCus = K_STEM_LAB.Models.Response.respPay.Root;
+using K_STEM_LAB.Models.business.response;
 
 namespace K_STEM_LAB.Adapter
 {
   public static class PayCus
   {
-    public static string RequestPay(string userName, string apiKey, string branch , int id , decimal amount)
+    public static string RequestPay(string userName, string apiKey, string branch , int id_Dogovor, decimal amount)
     {
       Logger _logger = LogManager.GetCurrentClassLogger();
       string token = "";
@@ -26,7 +28,7 @@ namespace K_STEM_LAB.Adapter
       Pay pay = new Pay();
 
             pay.branch_id = branch;
-            pay.customer_id = id;
+            pay.customer_id = id_Dogovor;
             pay.pay_type_id = 1;
             pay.pay_account_id = 4;
             pay.pay_item_id = 1;
@@ -79,7 +81,21 @@ namespace K_STEM_LAB.Adapter
         throw new Exception(ex.ToString());
       }
 
-      return response.Content;
+      //Ответ в модель
+      RespPayCus RPC = JsonConvert.DeserializeObject<RespPayCus>(response.Content);
+
+      BusPayResp BPR = new BusPayResp();
+      BPR.idRecepient = RPC.model.id;
+      BPR.Success = RPC.success;
+      BPR.is_confirmed = RPC.model.is_confirmed;
+
+
+
+      var res = JsonConvert.SerializeObject(BPR);
+
+
+
+      return res;
     }
   }
 }

@@ -1,6 +1,13 @@
-﻿namespace K_STEM_LAB.Models.Response
+﻿namespace K_STEM_LAB.Models.Response.respPay
 {
-    public class Model
+  public class Root
+  {
+    public bool success { get; set; }
+    public List<object> errors { get; set; }
+    public Model model { get; set; }
+  }
+
+  public class Model
     {
         public int id { get; set; }
         public string branch_id { get; set; }
@@ -18,11 +25,5 @@
         public string note { get; set; }
         public bool is_confirmed { get; set; }
 
-        public class Root
-        {
-            public bool success { get; set; }
-            public List<object> errors { get; set; }
-            public Model model { get; set; }
-        }
     }
 }

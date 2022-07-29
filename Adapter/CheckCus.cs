@@ -3,6 +3,8 @@ using NLog;
 using RestSharp;
 using TokenAuth = K_STEM_LAB.Models.Response.Root;
 using ChekCus = K_STEM_LAB.Models.Request.reqCheck;
+using RespCheckCus = K_STEM_LAB.Models.Response.respCheck.Root;
+using K_STEM_LAB.Models.business.response;
 
 namespace K_STEM_LAB.Adapter
 {
@@ -61,7 +63,18 @@ namespace K_STEM_LAB.Adapter
         throw new Exception(ex.ToString());
       }
 
-      return response.Content;
+      //Ответ в модель
+      RespCheckCus RCC = JsonConvert.DeserializeObject<RespCheckCus>(response.Content);
+      
+      BusCheckResp BCR = new BusCheckResp();
+      BCR.Student = RCC.items[0].legal_name;
+      BCR.Balance = RCC.items[0].balance;
+
+
+      var res = JsonConvert.SerializeObject(BCR);
+
+
+      return res;
     }
   }
 }
