@@ -20,7 +20,7 @@
         public object commodity_id { get; set; }
         public object ctt_id { get; set; }
         public string document_date { get; set; }
-        public string income { get; set; }
+        public int income { get; set; }
         public string payer_name { get; set; }
         public string note { get; set; }
         public bool is_confirmed { get; set; }

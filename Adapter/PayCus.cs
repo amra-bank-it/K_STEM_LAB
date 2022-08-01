@@ -10,7 +10,7 @@ namespace K_STEM_LAB.Adapter
 {
   public static class PayCus
   {
-    public static string RequestPay(string userName, string apiKey, string branch , int id_Dogovor, decimal amount)
+    public static string RequestPay(string userName, string apiKey, string branch , int id_dogovor , decimal amount)
     {
       Logger _logger = LogManager.GetCurrentClassLogger();
       string token = "";
@@ -28,7 +28,7 @@ namespace K_STEM_LAB.Adapter
       Pay pay = new Pay();
 
             pay.branch_id = branch;
-            pay.customer_id = id_Dogovor;
+            pay.customer_id = id_dogovor;
             pay.pay_type_id = 1;
             pay.pay_account_id = 4;
             pay.pay_item_id = 1;
@@ -85,8 +85,10 @@ namespace K_STEM_LAB.Adapter
       RespPayCus RPC = JsonConvert.DeserializeObject<RespPayCus>(response.Content);
 
       BusPayResp BPR = new BusPayResp();
-      BPR.idRecepient = RPC.model.id;
       BPR.Success = RPC.success;
+      BPR.idRecepient = RPC.model.id;     
+      BPR.income = RPC.model.income;
+      BPR.note = RPC.model.note;
       BPR.is_confirmed = RPC.model.is_confirmed;
 
 

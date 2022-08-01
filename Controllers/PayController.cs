@@ -11,9 +11,9 @@ namespace K_STEM_LAB.Controllers
     {
         
     [HttpGet(Name = "GetPay")]
-        public string GetPay(string userName, string apiKey , string branch , int id_Dogovor , decimal amount)
+        public string GetPay(string userName, string apiKey , string branch , int id_dogovor , decimal amount)
         {            
-           return PayCus.RequestPay(userName, apiKey , branch , id_Dogovor, amount);
+           return PayCus.RequestPay(userName, apiKey , branch , id_dogovor , amount);
         }
     }
 }
