@@ -16,7 +16,7 @@ namespace K_STEM_LAB.Adapter
       Logger _logger = LogManager.GetCurrentClassLogger();
       string token = "";
 
-      //"https://stemlabfaf4.s20.online" сделать в виде настройки либо appseting либо отдельный класс с константами
+     
       var client = new RestClient("https://stemlabfaf4.s20.online");
       var request = new RestRequest($"/v2api/{branch}/customer", Method.Post);
       //Получаем токен для дальнейших запросов

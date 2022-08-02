@@ -15,7 +15,7 @@ namespace K_STEM_LAB.Adapter
       Logger _logger = LogManager.GetCurrentClassLogger();
       string token = "";
       string dateTime = DateTime.Now.ToString("dd.MM.yyyy");
-      var client = new RestClient("https://stemlabfaf4.s20.online");
+      var client = new RestClient("https://stemlabfaf4.s20.online");      
       var request = new RestRequest($"/v2api/{branch}/pay/create", Method.Post);
       token = Authorization.GetToken(userName, apiKey);
       _logger.Info("Получаем токен для проведения платежа");
@@ -88,7 +88,6 @@ namespace K_STEM_LAB.Adapter
       BPR.Success = RPC.success;
       BPR.idRecepient = RPC.model.id;     
       BPR.income = RPC.model.income;
-      BPR.note = RPC.model.note;
       BPR.is_confirmed = RPC.model.is_confirmed;
 
 

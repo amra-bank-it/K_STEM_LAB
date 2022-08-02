@@ -5,6 +5,7 @@ using K_STEM_LAB.Models.Request;
 using RestSharp;
 using NLog;
 using Sentry;
+using System.Net.Mime;
 
 namespace K_STEM_LAB.Controllers
 {
@@ -15,9 +16,9 @@ namespace K_STEM_LAB.Controllers
     {
    
         [HttpGet(Name = "GetCheck")]
-        public string GetCheck(string userName, string apiKey , string branch , int id)
+        public string GetCheck(string userName, string apiKey , string branch , int id_dogovor)
         {
-            return CheckCus.CheckRequestCus(userName , apiKey , branch , id);
+            return CheckCus.CheckRequestCus(userName , apiKey , branch , id_dogovor);
         }
     }
 }
