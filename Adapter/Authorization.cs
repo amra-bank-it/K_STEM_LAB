@@ -6,6 +6,13 @@ namespace K_STEM_LAB.Adapter
 {
   public static class Authorization
   {
+    /// <summary>
+    /// Получаем токен для дальнейших запросов
+    /// </summary>
+    /// <param name="userName"></param>
+    /// <param name="apiKey"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public static string GetToken(string userName, string apiKey)
     {
       Logger _logger = LogManager.GetCurrentClassLogger();

@@ -18,7 +18,7 @@ namespace K_STEM_LAB.Controllers
         [HttpGet(Name = "GetCheck")]
         public string GetCheck(string userName, string apiKey , string branch , int id_dogovor)
         {
-            return CheckCus.CheckRequestCus(userName , apiKey , branch , id_dogovor);
+            return CustomerBilling.Check(userName , apiKey , branch , id_dogovor);
         }
     }
 }
