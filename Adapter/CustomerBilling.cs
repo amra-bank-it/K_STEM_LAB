@@ -13,7 +13,7 @@ namespace K_STEM_LAB.Adapter
 {
   public static class CustomerBilling
   {
-    public static string Pay(string userName, string apiKey, string branch, int id_dogovor, decimal amount)
+    public static string Pay(string userName, string apiKey, string branch, int id_dogovor, decimal amount,string payer_name)
     {
       Logger _logger = LogManager.GetCurrentClassLogger();
 
@@ -25,7 +25,7 @@ namespace K_STEM_LAB.Adapter
 
       AddHeader(TA, ref request);
 
-      string body = BodyPayRequest(branch, id_dogovor, amount);
+      string body = BodyPayRequest(branch, id_dogovor, amount, payer_name);
 
       request.AddParameter("application/json", body, ParameterType.RequestBody);
 
@@ -82,7 +82,7 @@ namespace K_STEM_LAB.Adapter
       return BPR;
     }
 
-    private static string BodyPayRequest(string branch, int id_dogovor, decimal amount)
+    private static string BodyPayRequest(string branch, int id_dogovor, decimal amount,string payer_name)
     {
       Pay pay = new Pay();
 
@@ -93,8 +93,8 @@ namespace K_STEM_LAB.Adapter
       pay.pay_item_id = 1;
       pay.document_date = DateTimeString();
       pay.income = amount;
-      pay.payer_name = "Terminal test";
-      pay.note = "Оплата с терминала Амра-банк";
+      pay.payer_name = payer_name;
+      pay.note = $"Оплата с {pay.payer_name}";
       pay.is_confirmed = 1;
 
 
