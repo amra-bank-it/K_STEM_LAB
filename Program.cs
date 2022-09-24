@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore;
+using Prometheus;
 using Sentry;
 using Sentry.Extensibility;
 using System.Net;
@@ -29,7 +30,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-//app.UseSentryTracing();
+app.UseMetricServer(); //Использование метрик
+
+app.UseHttpMetrics();
 
 app.UseEndpoints(endpoints =>
 {
